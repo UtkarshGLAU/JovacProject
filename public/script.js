@@ -38,3 +38,14 @@ fontSize.addEventListener("change", () => {
     document.getElementById("inputText").style.fontSize = fontSize.value;
     document.getElementById("outputText").style.fontSize = fontSize.value;
 })
+
+document.getElementById("inputText").addEventListener("input", function() {
+    const maxChars = 3000;
+    const inputText = document.getElementById("inputText");
+    const currentLength = inputText.value.length;
+
+    if (currentLength > maxChars) {
+        inputText.value = inputText.value.substring(0, maxChars);
+        alert("You have reached the character limit of 3000.");
+    }
+});
