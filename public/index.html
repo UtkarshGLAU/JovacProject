@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SummarAIze</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <h2>SummarAIze</h2>
+        <div>
+            <select id="size">
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+                <option value="22px">22px</option>
+                <option value="24px">24px</option>
+                <option value="26px">26px</option>
+                <option value="28px">28px</option>
+                <option value="30px">30px</option>
+                <option value="32px">32px</option>
+            </select>
+        </div>
+        <div id="buttons">
+            <button type="button" class="button" id="loginButton"><a href="/login">Log in</a></button>            
+            <button type="button" class="button" id="signupButton"><a href="/signup">Sign Up</a></button>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <div id="left">
+            <h3>Input Text</h3>
+            <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+            <button id="summarizeButton" class="button">Summarize</button>
+        </div>
+
+        <div id="right">
+            <h3>Summary</h3>
+            <textarea id="outputText" placeholder="Summary will appear here..." readonly></textarea>
+            <button id="clearButton" class="button">Clear</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
