@@ -49,3 +49,48 @@ document.getElementById("inputText").addEventListener("input", function() {
         alert("You have reached the character limit of 3000.");
     }
 });
+
+
+
+
+
+document.getElementById('themeToggleButton').addEventListener('click', function () {
+    const body = document.body;
+    const header = document.getElementById('header');
+    const left = document.getElementById('left');
+    const right = document.getElementById('right');
+    const buttons = document.querySelectorAll('.button');
+    const conat = document.getElementById('main-container')
+    
+    if (body.style.backgroundColor === 'rgb(18, 32, 47)') {
+        body.style.backgroundColor = '#f7f9fc';
+        body.style.color = '#333';
+        header.style.backgroundColor = '#1a73e8';
+        left.style.backgroundColor = '#eef3fc';
+        right.style.backgroundColor = '#f1f1f1';
+
+        conat.style.backgroundColor= "white";
+        document.getElementById("inputText").style.backgroundColor="#f9fafb"
+        document.getElementById("outputText").style.backgroundColor="#f9fafb"
+
+        buttons.forEach(button => {
+            button.style.backgroundColor = '#4285f4';
+            button.style.color = 'white';
+        });
+    } else {
+        body.style.backgroundColor = '#12202f'; 
+        body.style.color = '#d1d9e6';
+        header.style.backgroundColor = '#0f3d61'; 
+        left.style.backgroundColor = '#1c4e70'; 
+        right.style.backgroundColor = '#183a52';
+
+        conat.style.backgroundColor= "black";
+        document.getElementById("inputText").style.backgroundColor="#79a4ff"
+        document.getElementById("outputText").style.backgroundColor="#79a4ff"
+        
+        buttons.forEach(button => {
+            button.style.backgroundColor = '#0f6ba1';
+            button.style.color = '#fff'; 
+        });
+    }
+});

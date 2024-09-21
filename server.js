@@ -27,12 +27,7 @@ app.get('/signup', (req, res) => {
 });
 
 app.post('/summarize', async (req, res) => {
-    const { text } = req.body;
-
-    if (!text || text.trim().length === 0) {
-        return res.status(400).json({ error: 'Text is required for summarization.' });
-    }
-
+    const text = req.body.text;
     try {
         const response = await axios.post(
             'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
@@ -41,7 +36,7 @@ app.post('/summarize', async (req, res) => {
                 headers: {
                     Authorization: `Bearer ${process.env.HUGGING_FACE_API_KEY}`,
                     'Content-Type': 'application/json',
-                },
+                }
             }
         );
 
@@ -57,5 +52,5 @@ app.post('/summarize', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server Live on http://localhost:${PORT}`);
 });
