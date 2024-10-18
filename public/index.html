@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SummarAIze</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0-beta3/css/all.css">
 </head>
 <body>
     <div id="header">
@@ -40,13 +41,13 @@
             <button id="clearButton" class="button">Clear</button>
         </div>
     </div>
-
-    <!-- New History Section -->
+    
     <div id="history-container">
-        <h3>History</h3>
+        <button id="history-container-btn"><i class="fa-solid fa-plus"></i></button>
+        <h3 id="history-container-header"></h3>
         <ul id="historyList"></ul>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>

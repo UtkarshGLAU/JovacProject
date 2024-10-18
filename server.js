@@ -9,14 +9,13 @@ const { MongoClient } = require('mongodb');
 const app = express();
 const PORT = 5000;
 
-// MongoDB Setup
-const mongoUri = process.env.MONGO_URI; // Add MongoDB URI in .env
+const mongoUri = process.env.MONGO_URI; 
 const client = new MongoClient(mongoUri);
 
 let db;
 client.connect()
     .then(() => {
-        db = client.db('SummarAIze'); // Database name
+        db = client.db('SummarAIze'); 
         console.log('Connected to MongoDB');
     })
     .catch(err => console.error('Failed to connect to MongoDB', err));
@@ -46,7 +45,6 @@ app.post('/summarize', async (req, res) => {
         if (response.data && response.data[0].summary_text) {
             const summary = response.data[0].summary_text;
 
-            // Store summary in MongoDB
             const historyItem = {
                 text,
                 summary,
@@ -64,7 +62,6 @@ app.post('/summarize', async (req, res) => {
     }
 });
 
-// Fetch history from MongoDB
 app.get('/history', async (req, res) => {
     try {
         const history = await db.collection('history').find().sort({ date: -1 }).limit(10).toArray();

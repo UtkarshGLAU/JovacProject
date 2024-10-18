@@ -1,4 +1,5 @@
 need a .env file with hugging face token(HUGGING_FACE_API_KEY=your-hugging-face-api-key-here)
+and your mongo uri
 
 
 in the root dir of this folder 

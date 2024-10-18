@@ -12,7 +12,7 @@ body {
     padding: 0;
     height: 100vh;
     display: flex;
-    flex-direction: row; /* Changed to row for the layout */
+    flex-direction: row; 
 }
 
 #header {
@@ -56,17 +56,17 @@ body {
     background-color: grey;
 }
 
-/* Left nav bar for history */
 #history-container {
-    width: 250px;
+    width: fit-content;
+    max-width: 250px;
     background-color: #eef3fc;
     padding: 20px;
-    position: fixed;
-    top: 80px; /* Adjusted for the header */
+    top: 80px; 
     left: 0;
     bottom: 0;
     overflow-y: auto;
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
 }
 
 #history-container h3 {
@@ -78,7 +78,17 @@ body {
 #historyList {
     list-style-type: none;
     padding-left: 0;
+    display: none;
 }
+#history-container-btn{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #b8c0cd;
+    border-radius: 20%;
+    padding: 2px;
+}
+
 
 #historyList li {
     margin-bottom: 10px;
@@ -87,19 +97,19 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    overflow-x: auto;
 }
 
 #historyList li:hover {
     background-color: #d4e4ff;
 }
 
-/* Main container adjusted for the history section */
 #main-container {
     display: flex;
     justify-content: space-between;
-    width: calc(100% - 270px); /* Adjusted to leave space for the history section */
+    width: calc(100% - 270px); 
     max-width: 1200px;
-    margin-left: 270px; /* Added margin to avoid overlapping with the history section */
+    margin-left: 270px;
     margin-top: 120px;
     padding: 20px;
     background-color: white;
