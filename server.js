@@ -4,26 +4,29 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const { MongoClient } = require('mongodb');
 
 const app = express();
 const PORT = 5000;
 
-// console.log('Hugging Face API Key:', process.env.HUGGING_FACE_API_KEY);
+// MongoDB Setup
+const mongoUri = process.env.MONGO_URI; // Add MongoDB URI in .env
+const client = new MongoClient(mongoUri);
 
-app.use(cors()); 
-app.use(bodyParser.json()); 
+let db;
+client.connect()
+    .then(() => {
+        db = client.db('SummarAIze'); // Database name
+        console.log('Connected to MongoDB');
+    })
+    .catch(err => console.error('Failed to connect to MongoDB', err));
+
+app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
-});
-
-app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'signup.html'));
 });
 
 app.post('/summarize', async (req, res) => {
@@ -41,7 +44,17 @@ app.post('/summarize', async (req, res) => {
         );
 
         if (response.data && response.data[0].summary_text) {
-            res.json({ summary: response.data[0].summary_text });
+            const summary = response.data[0].summary_text;
+
+            // Store summary in MongoDB
+            const historyItem = {
+                text,
+                summary,
+                date: new Date().toISOString(),
+            };
+            await db.collection('history').insertOne(historyItem);
+
+            res.json({ summary });
         } else {
             res.status(500).json({ error: 'Unexpected response from API' });
         }
@@ -51,6 +64,17 @@ app.post('/summarize', async (req, res) => {
     }
 });
 
+// Fetch history from MongoDB
+app.get('/history', async (req, res) => {
+    try {
+        const history = await db.collection('history').find().sort({ date: -1 }).limit(10).toArray();
+        res.json({ history });
+    } catch (error) {
+        console.error('Error fetching history:', error);
+        res.status(500).json({ error: 'Failed to fetch history' });
+    }
+});
+
 app.listen(PORT, () => {
-    console.log(`Server Live on http://localhost:${PORT}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

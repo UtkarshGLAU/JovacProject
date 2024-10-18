@@ -12,8 +12,7 @@ body {
     padding: 0;
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row; /* Changed to row for the layout */
 }
 
 #header {
@@ -57,11 +56,50 @@ body {
     background-color: grey;
 }
 
+/* Left nav bar for history */
+#history-container {
+    width: 250px;
+    background-color: #eef3fc;
+    padding: 20px;
+    position: fixed;
+    top: 80px; /* Adjusted for the header */
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+#history-container h3 {
+    font-size: 1.4rem;
+    color: #1a73e8;
+    margin-bottom: 15px;
+}
+
+#historyList {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#historyList li {
+    margin-bottom: 10px;
+    padding: 8px;
+    background-color: #00ccff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#historyList li:hover {
+    background-color: #d4e4ff;
+}
+
+/* Main container adjusted for the history section */
 #main-container {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: calc(100% - 270px); /* Adjusted to leave space for the history section */
     max-width: 1200px;
+    margin-left: 270px; /* Added margin to avoid overlapping with the history section */
     margin-top: 120px;
     padding: 20px;
     background-color: white;
@@ -124,6 +162,8 @@ textarea:focus {
 @media (max-width: 768px) {
     #main-container {
         flex-direction: column;
+        margin-left: 0;
+        width: 100%;
     }
 
     #left, #right {
@@ -138,5 +178,16 @@ textarea:focus {
     .button {
         font-size: 0.9rem;
         padding: 8px 16px;
+    }
+
+    #history-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    #main-container {
+        width: 100%;
     }
 }
