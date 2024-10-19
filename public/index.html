@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,47 +8,50 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0-beta3/css/all.css">
 </head>
+
 <body>
-    <div id="header">
-        <h2>SummarAIze</h2>
-        <div>
-            <select id="size">
-                <option value="16px">16px</option>
-                <option value="18px">18px</option>
-                <option value="20px">20px</option>
-                <option value="22px">22px</option>
-                <option value="24px">24px</option>
-                <option value="26px">26px</option>
-                <option value="28px">28px</option>
-                <option value="30px">30px</option>
-                <option value="32px">32px</option>
-            </select>
-        </div>
-        <div id="buttons">
-            <button id="themeToggleButton" class="button">Toggle Theme</button>
-        </div>
-    </div>
-
-    <div id="main-container">
-        <div id="left">
-            <h3>Input Text</h3>
-            <textarea id="inputText" placeholder="Paste your text here..."></textarea>
-            <button id="summarizeButton" class="button">Summarize</button>
+    <div id="container">
+        <div id="header">
+            <h2>SummarAIze</h2>
+            <div id="buttons">
+                <button id="themeToggleButton" class="button">Toggle Theme</button>
+                <button id="history-container-btn" class="button">History</button>
+                <select id="size" class="button">
+                    <option value="16px">16px</option>
+                    <option value="18px">18px</option>
+                    <option value="20px">20px</option>
+                    <option value="22px">22px</option>
+                    <option value="24px">24px</option>
+                    <option value="26px">26px</option>
+                    <option value="28px">28px</option>
+                    <option value="30px">30px</option>
+                    <option value="32px">32px</option>
+                </select>
+            </div>
         </div>
 
-        <div id="right">
-            <h3>Summary</h3>
-            <textarea id="outputText" placeholder="Summary will appear here..." readonly></textarea>
-            <button id="clearButton" class="button">Clear</button>
+        <div id="main-container">
+            <div id="left">
+                <h3>Input Text</h3>
+                <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+                <button id="summarizeButton" class="button">Summarize</button>
+            </div>
+
+            <div id="right">
+                <h3>Summary</h3>
+                <textarea id="outputText" placeholder="Summary will appear here..." readonly></textarea>
+                <button id="clearButton" class="button">Clear</button>
+            </div>
         </div>
+        <div id="history-container">
+            <h3 id="history-container-header">History</h3>
+            <ul id="historyList"></ul>
+        </div>
+
     </div>
-    
-    <div id="history-container">
-        <button id="history-container-btn"><i class="fa-solid fa-plus"></i></button>
-        <h3 id="history-container-header"></h3>
-        <ul id="historyList"></ul>
-    </div>
-    
+
+
     <script src="script.js"></script>
 </body>
+
 </html>

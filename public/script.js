@@ -115,17 +115,20 @@ async function fetchHistory() {
 }
 
 document.addEventListener('DOMContentLoaded', fetchHistory);
-
 document.getElementById('history-container-btn').addEventListener('click', function() {
+    const historyContainer = document.getElementById('history-container');
     const historyList = document.getElementById('historyList');
-    const historyHeader = document.getElementById('history-container-header');
-
+    const mainContainer =document.getElementById('main-container')
 
     if (historyList.style.display === 'none' || !historyList.style.display) {
         historyList.style.display = 'block';
-        historyHeader.textContent = 'History';
+        historyContainer.style.padding="10px";
+        historyContainer.style.display='flex';
+        mainContainer.style.display='none';
     } else {
         historyList.style.display = 'none';
-        historyHeader.textContent = "";
+        historyContainer.style.padding="0px";
+        historyContainer.style.display='none';
+        mainContainer.style.display='flex';
     }
 });
