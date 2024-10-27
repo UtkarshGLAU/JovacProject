@@ -29,6 +29,10 @@
                 </select>
             </div>
         </div>
+        <div id="notification">
+            <h3 id="notifyHeading"></h3>
+            <p id="notifyText"></p>
+        </div>
 
         <div id="main-container">
             <div id="left">
@@ -40,6 +44,7 @@
             <div id="right">
                 <h3>Summary</h3>
                 <textarea id="outputText" placeholder="Summary will appear here..." readonly></textarea>
+                <button id="copyBtn" onclick="copyToClipBoard()">Copy</button>
                 <button id="clearButton" class="button">Clear</button>
             </div>
         </div>

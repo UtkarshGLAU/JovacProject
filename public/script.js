@@ -1,4 +1,4 @@
-document.getElementById('summarizeButton').addEventListener('click', async function() {
+document.getElementById('summarizeButton').addEventListener('click', async function () {
     const inputText = document.getElementById('inputText').value;
 
     if (inputText.trim() === '') {
@@ -13,10 +13,11 @@ document.getElementById('summarizeButton').addEventListener('click', async funct
             body: JSON.stringify({ text: inputText }),
         });
         const result = await response.json();
-        
+
         if (result.summary) {
+            console.log(result.summary);
             document.getElementById('outputText').value = result.summary;
-            fetchHistory(); 
+            fetchHistory();
         } else {
             alert('Failed to summarize the text.');
         }
@@ -26,19 +27,19 @@ document.getElementById('summarizeButton').addEventListener('click', async funct
     }
 });
 
-document.getElementById('clearButton').addEventListener('click', function() {
+document.getElementById('clearButton').addEventListener('click', function () {
     document.getElementById('inputText').value = '';
     document.getElementById('outputText').value = '';
 });
 
-document.getElementById("size").addEventListener("change", function() {
+document.getElementById("size").addEventListener("change", function () {
     const fontSize = document.getElementById("size").value;
     document.getElementById("inputText").style.fontSize = fontSize;
     document.getElementById("outputText").style.fontSize = fontSize;
-    document.getElementById('historyList').style.fontSize=fontSize;
+    document.getElementById('historyList').style.fontSize = fontSize;
 });
 
-document.getElementById("inputText").addEventListener("input", function() {
+document.getElementById("inputText").addEventListener("input", function () {
     const maxChars = 3000;
     const inputText = document.getElementById("inputText").value;
 
@@ -48,14 +49,14 @@ document.getElementById("inputText").addEventListener("input", function() {
     }
 });
 
-document.getElementById('themeToggleButton').addEventListener('click', function() {
+document.getElementById('themeToggleButton').addEventListener('click', function () {
     const body = document.body;
     const header = document.getElementById('header');
     const left = document.getElementById('left');
     const right = document.getElementById('right');
     const mainContainer = document.getElementById('main-container');
     const historyContainer = document.getElementById('history-container');
-    const historyItems = document.querySelectorAll('#historyList li'); 
+    const historyItems = document.querySelectorAll('#historyList li');
 
     const isDarkMode = body.style.backgroundColor === 'rgb(18, 32, 47)';
 
@@ -74,9 +75,9 @@ document.getElementById('themeToggleButton').addEventListener('click', function(
         document.getElementById("outputText").style.color = "#333";
         console.log(historyItems)
         historyItems.forEach(item => {
-            item.style.color = '#333'; 
+            item.style.color = '#333';
         });
-        
+
     } else {
         body.style.backgroundColor = '#12202f';
         body.style.color = '#d1d9e6';
@@ -92,7 +93,7 @@ document.getElementById('themeToggleButton').addEventListener('click', function(
         document.getElementById("outputText").style.color = "white";
 
         historyItems.forEach(item => {
-            item.style.color = 'white'; 
+            item.style.color = 'white';
         });
     }
 });
@@ -115,20 +116,44 @@ async function fetchHistory() {
 }
 
 document.addEventListener('DOMContentLoaded', fetchHistory);
-document.getElementById('history-container-btn').addEventListener('click', function() {
+const historyBtn=document.getElementById('history-container-btn')
+historyBtn.addEventListener('click', function () {
     const historyContainer = document.getElementById('history-container');
     const historyList = document.getElementById('historyList');
-    const mainContainer =document.getElementById('main-container')
+    const mainContainer = document.getElementById('main-container')
 
     if (historyList.style.display === 'none' || !historyList.style.display) {
         historyList.style.display = 'block';
-        historyContainer.style.padding="10px";
-        historyContainer.style.display='flex';
-        mainContainer.style.display='none';
+        historyContainer.style.padding = "10px";
+        historyContainer.style.display = 'flex';
+        mainContainer.style.display = 'none';
+        historyBtn.innerText="< Back";
     } else {
         historyList.style.display = 'none';
-        historyContainer.style.padding="0px";
-        historyContainer.style.display='none';
-        mainContainer.style.display='flex';
+        historyContainer.style.padding = "0px";
+        historyContainer.style.display = 'none';
+        mainContainer.style.display = 'flex';
+        historyBtn.innerText="History";
     }
 });
+
+function copyToClipBoard() {
+    const copyText = document.getElementById('outputText').value;
+    if(!copyText) return;
+    navigator.clipboard.writeText(copyText).then(() => {
+        notify("Copied",copyText);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
+}
+function notify(h,n){
+    const notification=document.getElementById('notification');
+    if(!notification.style.display || notification.style.display === 'none'){
+        notification.style.display = 'block';
+        document.getElementById("notifyHeading").innerText=h;        
+        document.getElementById('notifyText').innerText=n;
+        setTimeout(function(){
+            notification.style.display = 'none';
+        }, 2000);
+    }
+}
