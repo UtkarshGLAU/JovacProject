@@ -2,7 +2,7 @@ document.getElementById('summarizeButton').addEventListener('click', async funct
     const inputText = document.getElementById('inputText').value;
 
     if (inputText.trim() === '') {
-        alert('Please enter some text to summarize.');
+        notify('EMPTY','Please enter some text to summarize.');
         return;
     }
 
@@ -19,11 +19,11 @@ document.getElementById('summarizeButton').addEventListener('click', async funct
             document.getElementById('outputText').value = result.summary;
             fetchHistory();
         } else {
-            alert('Failed to summarize the text.');
+            notify('ALERT!!','Failed to summarize the text.');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred while summarizing. Please try again.');
+        notify('ALERT','An error occurred while summarizing. Please try again.');
     }
 });
 
@@ -45,7 +45,7 @@ document.getElementById("inputText").addEventListener("input", function () {
 
     if (inputText.length > maxChars) {
         document.getElementById("inputText").value = inputText.substring(0, maxChars);
-        alert("You have reached the character limit of 3000.");
+        notify('LIMIT Breached',"You have reached the character limit of 3000.");
     }
 });
 
@@ -112,6 +112,7 @@ async function fetchHistory() {
         });
     } catch (error) {
         console.error('Error fetching history:', error);
+        notify('fetch History Error','An error occurred while fetching history.');
     }
 }
 
@@ -143,6 +144,7 @@ function copyToClipBoard() {
     navigator.clipboard.writeText(copyText).then(() => {
         notify("Copied",copyText);
     }).catch(err => {
+        notify('Failed to copy text: ',err);
         console.error('Failed to copy text: ', err);
     });
 }
