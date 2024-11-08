@@ -112,6 +112,7 @@ textarea:focus {
     border-color: #1a73e8;
 }
 #copyBtn{
+    background-color: #f7f9fc;
     color: rgb(12, 12, 12);
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 5px;

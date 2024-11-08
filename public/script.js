@@ -57,11 +57,12 @@ document.getElementById('themeToggleButton').addEventListener('click', function 
     const mainContainer = document.getElementById('main-container');
     const historyContainer = document.getElementById('history-container');
     const historyItems = document.querySelectorAll('#historyList li');
-
+    const copyBtn = document.getElementById('copyBtn');
     const isDarkMode = body.style.backgroundColor === 'rgb(18, 32, 47)';
 
     if (isDarkMode) {
         body.style.backgroundColor = '#f7f9fc';
+        copyBtn.style.backgroundColor='#f7f9fc';
         body.style.color = '#333';
         header.style.backgroundColor = '#1a73e8';
         left.style.backgroundColor = '#eef3fc';
@@ -80,6 +81,7 @@ document.getElementById('themeToggleButton').addEventListener('click', function 
 
     } else {
         body.style.backgroundColor = '#12202f';
+        copyBtn.style.backgroundColor='#1a73e8';
         body.style.color = '#d1d9e6';
         header.style.backgroundColor = '#0f3d61';
         left.style.backgroundColor = '#1c4e70';
