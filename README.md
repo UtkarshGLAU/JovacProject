@@ -1,10 +1,22 @@
-need a .env file with hugging face token(HUGGING_FACE_API_KEY=your-hugging-face-api-key-here)
-and your mongo uri
+##WEBSITE:
+summaraize.utkarshsharma.tech
+hosted on render.com
 
 
-in the root dir of this folder 
+##If you need to run on your own system:
+
+need a .env file with 
+hugging face token(HUGGING_FACE_API_KEY=your-hugging-face-api-key-here)
+and 
+Mongodb(MONGO_URI=your-mongodb-key-here)
+
+##Instructions to run it
+In the root dir of this folder: 
 open terminal
-command
+###Type these commands:
+
+
 npm install dotenv express axios body-parser cors
-and then
+
+
 node server.js
