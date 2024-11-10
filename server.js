@@ -44,7 +44,7 @@ app.post('/summarize', async (req, res) => {
 
         if (response.data && response.data[0].summary_text) {
             const summary = response.data[0].summary_text;
-
+const date = new Date();
             const historyItem = {
                 text,
                 summary,
