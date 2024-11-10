@@ -48,7 +48,7 @@ app.post('/summarize', async (req, res) => {
             const historyItem = {
                 text,
                 summary,
-                date: new Date().toISOString(),
+                date: new Date(date.getTime() + 330 * 60 * 1000).toISOString(),
             };
             await db.collection('history').insertOne(historyItem);
 
