@@ -48,7 +48,7 @@ const date = new Date();
             const historyItem = {
                 text,
                 summary,
-                date: new Date(date.getTime() + 330 * 60 * 1000).toISOString(),
+                date: new Date(date.getTime() + 5.5 * 60 * 60 * 1000).toISOString(), // Kolkata is UTC+5:30
             };
             await db.collection('history').insertOne(historyItem);
 
