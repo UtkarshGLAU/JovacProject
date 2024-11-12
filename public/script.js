@@ -110,6 +110,17 @@ async function fetchHistory() {
         data.history.forEach(item => {
             const listItem = document.createElement('li');
             listItem.textContent = `${item.date}: ${item.summary}`;
+            const copyBtn=document.createElement('button');
+            copyBtn.innerText='Copy';
+            listItem.appendChild(copyBtn);
+            copyBtn.addEventListener('click', ()=> {
+                navigator.clipboard.writeText(item.summary).then(() => {
+                    notify("Copied", item.summary);
+                }).catch(err => {
+                    notify('Failed to copy text: ', err);
+                    console.error('Failed to copy text: ', err);
+                });
+            });
             historyList.appendChild(listItem);
         });
     } catch (error) {

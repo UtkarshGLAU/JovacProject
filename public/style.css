@@ -163,6 +163,25 @@ textarea:focus {
     margin-bottom: 10px;
     border-radius: 8px;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+#history-container ul li button{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: stretch;
+}
+#history-container ul li button:active{
+    background-color: #fd5d01;
 }
 #history-container h3{
     color: rgb(1, 1, 56);
