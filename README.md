@@ -1,22 +1,29 @@
 ## WEBSITE:
-summaraize.utkarshsharma.tech
-hosted on render.com
+[This is an link to summaraize.utkarshsharma.tech hosted on render.com](https://summaraize.utkarshsharma.tech/)
 
+## Running the Project on Your Own System
 
-## If you need to run on your own system:
+To run this project on your own system, you'll need to set up a `.env` file with the following environment variables:
 
-need a .env file with 
-hugging face token(HUGGING_FACE_API_KEY=your-hugging-face-api-key-here)
-and 
-Mongodb(MONGO_URI=your-mongodb-key-here)
+- **Hugging Face Token:** `HUGGING_FACE_API_KEY=your-hugging-face-api-key-here`
+- **MongoDB URI:** `MONGO_URI=your-mongodb-key-here`
 
-## Instructions to run it
-In the root dir of this folder: 
-open terminal
-### Type these commands:
+### Prerequisites
 
+Ensure you have the following installed on your system:
+- Node.js
+- npm (Node Package Manager)
 
-npm install dotenv express axios body-parser cors
+### Instructions to Run
 
-
-node server.js
+1. Open a terminal and navigate to the root directory of this project.
+2. Install the required npm packages by running the following command:
+   
+    ```sh
+    npm install dotenv express axios body-parser cors
+    ```
+4. Start the server by running:
+   
+    ```sh
+    node server.js
+    ```
